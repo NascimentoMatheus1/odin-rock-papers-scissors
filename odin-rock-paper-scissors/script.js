@@ -28,6 +28,7 @@ function getHumanChoice(){
 function playRound(){
     const playerChoice = getHumanChoice();
     const computerChoice = getComputerChoice();
+    playerInput.value = '';
     numRouds++
 
     if(isPlayerWon(playerChoice, computerChoice) == 'draw'){
@@ -79,6 +80,7 @@ function playGame(){
 
         const aswer = confirm('NEW GAME ?')
         if(aswer){
+
             playerScore = 0;
             ComputerScore = 0;
             numRouds = 0;
