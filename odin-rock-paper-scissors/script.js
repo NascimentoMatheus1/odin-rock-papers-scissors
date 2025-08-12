@@ -67,6 +67,16 @@ function playGame(){
     if(numRouds < 5){
         playRound()
     }else{
+        let winner = '';
+        if(playerScore ==  ComputerScore){
+            winner = 'DRAW !!!';
+        }else if (playerScore > ComputerScore){
+            winner = 'PLAYER WON !!!';
+        }else{
+            winner = 'COMPUTER WON !!!';
+        }
+        alert(winner);
+
         const aswer = confirm('NEW GAME ?')
         if(aswer){
             playerScore = 0;
