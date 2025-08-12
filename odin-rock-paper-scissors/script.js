@@ -7,12 +7,11 @@ const computerPoints = document.getElementById('computerScore');
 
 let playerScore = 0;
 let ComputerScore = 0;
+let numRouds = 0;
 
 form.addEventListener("submit", (e)=> {
     e.preventDefault();
-    const playerChoice = getHumanChoice();
-    const computerChoice = getComputerChoice();
-    playRound(playerChoice, computerChoice);
+    playGame()
 })
 
 function getComputerChoice(){
@@ -26,20 +25,24 @@ function getHumanChoice(){
     return hChoice;
 }
 
-function playRound(playerChoice, computerChoice){
-    rounds.innerText = ''
-    rounds.innerText = `Player move: ${playerChoice} ------ Computer move: ${computerChoice}`
+function playRound(){
+    const playerChoice = getHumanChoice();
+    const computerChoice = getComputerChoice();
+    numRouds++
 
     if(isPlayerWon(playerChoice, computerChoice) == 'draw'){
-        result.innerText = `${playerChoice} VS ${computerChoice} IT'S A DRAW !!!`
+        const drawMessage = `${playerChoice} VS ${computerChoice} IT'S A DRAW !!!`;
+        updateBoard(drawMessage, playerChoice, computerChoice)
+
     }else if(isPlayerWon(playerChoice, computerChoice)){
-        result.innerText = `${playerChoice} beats ${computerChoice} ! PLAYER WON !!!`
-        playerScore++;
-        playerPoints.innerText = `Player points: ${playerScore}`;
+        ++playerScore;
+        const playerWonMessage = `${playerChoice} beats ${computerChoice} ! PLAYER WON !!!`;
+        updateBoard(playerWonMessage, playerChoice, computerChoice);
+        
     }else {
-        result.innerText = `${computerChoice} beats ${playerChoice} ! COMPUTER WON !!!`
-        ComputerScore++;
-        computerPoints.innerText = `Computer points: ${ComputerScore}`;
+        ++ComputerScore;
+        const computerWonMessage = `${computerChoice} beats ${playerChoice} ! COMPUTER WON !!!`;
+        updateBoard(computerWonMessage, playerChoice, computerChoice);
     }
 }
 
@@ -58,4 +61,31 @@ function isPlayerWon(playerChoice, computerChoice){
         result = true;
     }
     return result;
+}
+
+function playGame(){
+    if(numRouds < 5){
+        playRound()
+    }else{
+        const aswer = confirm('NEW GAME ?')
+        if(aswer){
+            playerScore = 0;
+            ComputerScore = 0;
+            numRouds = 0;
+            updateBoard('', '', '');
+            playGame()
+        }
+    }
+}
+
+function updateBoard(message, playerChoice, computerChoice){
+    rounds.innerText = ''
+    rounds.innerText = `ROUND ${numRouds} ||| Player move: ${playerChoice} |||-||| Computer move: ${computerChoice}`
+
+    result.innerText = '';
+    result.innerText = message;
+
+    
+    playerPoints.innerText = `Player points: ${playerScore}`;
+    computerPoints.innerText = `Computer points: ${ComputerScore}`;
 }
