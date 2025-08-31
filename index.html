@@ -4,27 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Papers Scissors</title>
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Rock Papers Scissors</h1>
-
-    <H2>Scores</H2>
-
-    <p id="playerScore">Player: 0</p>
-
-    <p id="computerScore">Computer: 0</p>
-
-    <p id="rounds">Round: </p>
-
-    <p id="gameWinner">Result: </p>
-
-
-    <form id="form">
-        <label for="playerInput">make your move:</label>
-        <input type="text" name="playerInput" id="playerInput" placeholder="rock, paper or scissors " required autocomplete="off">
-    </form>
-    
+    <main>
+        <h1>Rock Papers Scissors</h1>
+        <div id="board">
+            <div id="player" class="score">
+                <img src="svg/person.svg" alt="icon of player">
+                <p id="playerScore"> : 0</p>
+            </div>
+            <div id="versusContainer">
+                <div id="playerImage" class="move"></div>
+                <p id="versus">vs</p>
+                <div id="computerImage" class="move"></div>
+            </div>
+            <div id="computer" class="score">
+                <img src="svg/computer.svg" alt="icon of computer">
+                <p id="computerScore"> : 0</p>
+            </div>
+        </div>
+        <p id="gameWinner"></p>
+        <div id="playerMove">
+            <button id="btnRock">Rock</button>
+            <label for="btnRock"><img src="images/rock.png" alt="rock hand gesture"></label>
+            <button id="btnPaper">Paper</button>
+            <label for="btnPaper"><img src="images/paper.png" alt="paper hand gesture"></label>
+        
+            <button id="btnScissors">Scissors</button>
+            <label for="btnScissors"><img src="images/scissors.png" alt="scissors hand gesture"></label>
+        </div>
+    </main>
     
 
    
