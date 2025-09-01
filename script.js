@@ -2,6 +2,9 @@ const result = document.getElementById('gameWinner');
 const playerPoints = document.getElementById('playerScore');
 const computerPoints = document.getElementById('computerScore');
 
+const start_restart = document.getElementById('start_restart');
+const playerMoves = document.getElementById('playerMoves');
+
 const btnRock = document.getElementById('btnRock');
 const btnPaper = document.getElementById('btnPaper');
 const btnScissors = document.getElementById('btnScissors');
@@ -12,19 +15,31 @@ const computerMove = document.getElementById('computerImage');
 let playerScore = 0;
 let ComputerScore = 0;
 
+start_restart.addEventListener('click', (e) =>{
+    e.preventDefault();
+    if(start_restart.innerHTML = "<button>RESTART</button>"){
+        updateBoard('Choose your Move', 'none', 'none');
+        playerMoves.style.display = 'flex';
+        start_restart.style.display = 'none';
+    }else{
+        playerMoves.style.display = 'flex';
+        start_restart.style.display = 'none';
+    }
+});
+
 btnRock.addEventListener('click', (e) => {
     e.preventDefault();
-    playRound('rock');
+    game('rock');
 });
 
 btnPaper.addEventListener('click', (e) => {
     e.preventDefault();
-    playRound('paper');
+    game('paper');
 });
 
 btnScissors.addEventListener('click', (e) => {
     e.preventDefault();
-    playRound('scissors');
+    game('scissors');
 });
 
 function getComputerChoice(){
@@ -33,23 +48,24 @@ function getComputerChoice(){
     return Choices[randommNum];
 }
 
-function playRound(playerChoice){
-
-    const computerChoice = getComputerChoice();
+function playRound(playerChoice, computerChoice){
+    playerMove.classList.remove('winnerRound');
+    playerMove.classList.remove('loserRound');
+    computerMove.classList.remove('winnerRound');
+    computerMove.classList.remove('loserRound');
 
     if(isPlayerWon(playerChoice, computerChoice) == 'draw'){
-        const drawMessage = `IT'S A DRAW !!!`;
-        updateBoard(drawMessage, playerChoice, computerChoice)
-
+        updateBoard("IT'S A DRAW !!!", playerChoice, computerChoice)
     }else if(isPlayerWon(playerChoice, computerChoice)){
-        ++playerScore;
-        const playerWonMessage = `PLAYER WON !!!`;
-        updateBoard(playerWonMessage, playerChoice, computerChoice);
-        
+        playerScore++;
+        playerMove.classList.add('winnerRound');
+        computerMove.classList.add('loserRound');
+        updateBoard("PLAYER WON !!!", playerChoice, computerChoice);
     }else {
-        ++ComputerScore;
-        const computerWonMessage = `COMPUTER WON !!!`;
-        updateBoard(computerWonMessage, playerChoice, computerChoice);
+        ComputerScore++;
+        computerMove.classList.add('winnerRound');
+        playerMove.classList.add('loserRound');
+        updateBoard("COMPUTER WON !!!", playerChoice, computerChoice);
     }
 }
 
@@ -70,7 +86,6 @@ function isPlayerWon(playerChoice, computerChoice){
     return result;
 }
 
-
 function updateBoard(message, playerChoice, computerChoice){
     playerMove.innerHTML = `<img src="images/${playerChoice}.png" alt="${playerChoice} hand gesture">`;
     computerMove.innerHTML = `<img src="images/${computerChoice}.png" alt="${computerChoice} hand gesture">`
@@ -80,4 +95,32 @@ function updateBoard(message, playerChoice, computerChoice){
 
     playerPoints.innerText = ` : ${playerScore}`;
     computerPoints.innerText = ` : ${ComputerScore}`;
+}
+
+function restartGame(){
+    start_restart.style.display = 'block';
+    start_restart.innerHTML = '<button>RESTART</button>';
+
+    playerMoves.style.display = 'none';
+    playerScore = 0;
+    ComputerScore = 0;
+
+    playerMove.classList.remove('winnerRound');
+    playerMove.classList.remove('loserRound');
+    computerMove.classList.remove('winnerRound');
+    computerMove.classList.remove('loserRound');
+}
+
+function game(playerChoice){
+    const computerChoice = getComputerChoice();
+    if(playerScore === 5 || ComputerScore === 5){
+        if(playerScore === 5){
+            updateBoard("PLAYER WON THE GAME !!!", "winner", "looser");
+        }else{
+            updateBoard("COMPUTER WON THE GAME !!!", "looser", "winner");
+        }
+        restartGame();
+    }else{
+        playRound(playerChoice, computerChoice);
+    }
 }
