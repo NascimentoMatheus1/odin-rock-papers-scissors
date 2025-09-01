@@ -14,6 +14,7 @@ const computerMove = document.getElementById('computerImage');
 
 let playerScore = 0;
 let ComputerScore = 0;
+let round = 0;
 
 start_restart.addEventListener('click', (e) =>{
     e.preventDefault();
@@ -53,19 +54,20 @@ function playRound(playerChoice, computerChoice){
     playerMove.classList.remove('loserRound');
     computerMove.classList.remove('winnerRound');
     computerMove.classList.remove('loserRound');
+    round++;
 
     if(isPlayerWon(playerChoice, computerChoice) == 'draw'){
-        updateBoard("IT'S A DRAW !!!", playerChoice, computerChoice)
+        updateBoard(`ROUND: ${round} - IT'S A DRAW !!!`, playerChoice, computerChoice)
     }else if(isPlayerWon(playerChoice, computerChoice)){
         playerScore++;
         playerMove.classList.add('winnerRound');
         computerMove.classList.add('loserRound');
-        updateBoard("PLAYER WON !!!", playerChoice, computerChoice);
+        updateBoard(`ROUND: ${round} - PLAYER WON !!!`, playerChoice, computerChoice);
     }else {
         ComputerScore++;
         computerMove.classList.add('winnerRound');
         playerMove.classList.add('loserRound');
-        updateBoard("COMPUTER WON !!!", playerChoice, computerChoice);
+        updateBoard(`ROUND: ${round} - COMPUTER WON !!!`, playerChoice, computerChoice);
     }
 }
 
@@ -100,11 +102,9 @@ function updateBoard(message, playerChoice, computerChoice){
 function restartGame(){
     start_restart.style.display = 'block';
     start_restart.innerHTML = '<button>RESTART</button>';
-
-    playerMoves.style.display = 'none';
     playerScore = 0;
     ComputerScore = 0;
-
+    round = 0;
     playerMove.classList.remove('winnerRound');
     playerMove.classList.remove('loserRound');
     computerMove.classList.remove('winnerRound');
@@ -113,14 +113,18 @@ function restartGame(){
 
 function game(playerChoice){
     const computerChoice = getComputerChoice();
+    playRound(playerChoice, computerChoice);
+
     if(playerScore === 5 || ComputerScore === 5){
-        if(playerScore === 5){
-            updateBoard("PLAYER WON THE GAME !!!", "winner", "looser");
-        }else{
-            updateBoard("COMPUTER WON THE GAME !!!", "looser", "winner");
-        }
-        restartGame();
-    }else{
-        playRound(playerChoice, computerChoice);
+        playerMoves.style.display = 'none';
+        setTimeout(() => {
+            if(playerScore === 5){
+                updateBoard("PLAYER WON THE GAME !!!", "winner", "looser");
+            }else{
+                updateBoard("COMPUTER WON THE GAME !!!", "looser", "winner");
+            }
+            restartGame();
+        }, 2000);
+       
     }
 }
