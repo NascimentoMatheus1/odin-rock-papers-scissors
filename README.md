@@ -1,6 +1,6 @@
 # Pedra, papel, tesoura.
 
-## [clique aqui para ver o site no navegador.](https://nascimentomatheus1.github.io/odin-rock-papers-scissors/)
+## [Live Preview](https://nascimentomatheus1.github.io/odin-rock-papers-scissors/)
 
 ## Esse projeto me ajudou apronfundar meu entendimento na manipulação da DOM, como pegar as ações de um usuario pelo frontend e fazer a manipulação das jogadas.
 
