@@ -12,6 +12,8 @@
 
 ### - O jogo termina quando o jogador ou a maquina atigem 5 pontos.
 
+##
+
 ### As imagens foram criadas utilizando a IA do google (Gemini 2.5 flash).
 
 ### Tarefa do The Odin Project: [Project: Rock Paper Scissors](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors)
