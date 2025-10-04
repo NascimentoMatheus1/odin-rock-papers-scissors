@@ -2,7 +2,7 @@
 
 ## [Visualização (Live Preview)](https://nascimentomatheus1.github.io/odin-rock-papers-scissors/)
 
-## Jogo para um jogador, onde voce jogar contra a maquina
+## Jogo de um jogador, onde você joga contra a máquina
 
 ## Como jogar:
 
@@ -10,7 +10,7 @@
 
 ### - Escolha uma das jogadas (Pedra, Papel e Tesoura)
 
-### - O jogo termina quando o jogador ou a maquina atigem 5 pontos.
+### - O jogo termina quando o jogador ou a máquina atingem 5 pontos.
 
 ##
 
