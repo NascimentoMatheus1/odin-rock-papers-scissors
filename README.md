@@ -12,6 +12,18 @@
 
 ### - O jogo termina quando o jogador ou a máquina atingem 5 pontos.
 
+## Conhecimento adquirido:
+
+### - Manipulação DOM
+
+### - Interação com o Usuário
+
+### -  Lógica de Programação e Algoritmos
+
+### -  Organização e Boas Práticas de Código
+
+### - Criação de Interfaces Gráficas (GUI)
+
 ##
 
 ### As imagens foram criadas utilizando a IA do google (Gemini 2.5 flash).
